@@ -26,7 +26,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: git clone --depth=1 --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
-      - run: cd OpenROAD-flow-scripts
-      - run: ./build_openroad.sh --os=${{ matrix.os }}
+      - run: |
+          cd OpenROAD-flow-scripts
+          ./build_openroad.sh --os=${{ matrix.os }}
       - run: docker tag openroad/flow-ubuntu22.04-builder killruana/openroad:${{ matrix.os }}-latest
       - run: docker push killruana/openroad:${{ matrix.os }}-latest
