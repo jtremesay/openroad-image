@@ -4,7 +4,8 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  schedule:
+    - cron:  '14 3 * * *'
   push:
     branches: [ "main" ]
   pull_request:
@@ -29,5 +30,5 @@ jobs:
       - run: |
           cd OpenROAD-flow-scripts
           ./build_openroad.sh --os=${{ matrix.os }}
-      - run: docker tag openroad/flow-ubuntu22.04-builder killruana/openroad:${{ matrix.os }}-latest
+      - run: docker tag openroad/flow-${{ matrix.os }}-builder killruana/openroad:${{ matrix.os }}
       - run: docker push killruana/openroad:${{ matrix.os }}-latest
