@@ -19,6 +19,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - run: git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+      - run: git clone --depth=1 --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
       - run: cd OpenROAD-flow-scripts
       - run: ./build_openroad.sh --os=ubuntu22.04
